@@ -140,7 +140,7 @@ def rf_regressor(feature_folder):
         test_city_df = pd.read_csv(test_city_csv)
         test_df = test_df.append(test_city_df, ignore_index=True)  # append all test cities together
     #test_df.to_csv('/p/home/jusers/bazarova1/juwels/hai_countmein/starter-pack/test_set_features.csv')
-    pca.fit(test_df.iloc[:,4:])
+#    pca.fit(test_df.iloc[:,4:])
     #test_df_pca=pca.fit_transform(test_df.iloc[:,4:])
     #x_test=pd.DataFrame(test_df_pca)[list_covar]
     
