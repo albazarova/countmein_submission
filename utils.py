@@ -19,7 +19,7 @@ except:
     import gdal
     import osr
 
-from constants import img_rows, img_cols, osm_features, current_dir_path
+from constants2 import img_rows, img_cols, osm_features, current_dir_path
 
 
 def raster2array(file_path, band):
