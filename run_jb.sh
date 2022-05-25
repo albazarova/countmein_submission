@@ -13,7 +13,7 @@ ml --force  purge
 
 module load  Stages/2022  GCCcore/.11.2.0 Singularity-Tools/2022
 
-sleep 7000
+#sleep 7000
 
 mkdir /tmp/data/
 

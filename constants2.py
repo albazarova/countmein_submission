@@ -47,18 +47,18 @@ min_fimportance = 0.002
 #param_grid = {'oob_score': [True], 'bootstrap': [True],
 #           'n_estimators': [250, 350, 500, 750, 1000]}
 #
-param_grid = {'learning_rate': [0.01,0.02,0.03,0.04,0.06,0.08,0.1,0.12],
-               'subsample'    : [0.9, 0.5, 0.2, 0.1],
-               'max_features': ['sqrt', 0.05, 0.1, 0.2, 0.3, 0.4],
-               'n_estimators': [250, 350, 500, 750, 1000],
-               'max_depth':[1,2,3,4,5,6],
+#param_grid = {'learning_rate': [0.01,0.02,0.03,0.04,0.06,0.08,0.1,0.12],
+#               'subsample'    : [0.9, 0.5, 0.2, 0.1],
+#               'max_features': ['sqrt', 0.05, 0.1, 0.2, 0.3, 0.4],
+#               'n_estimators': [250, 350, 500, 750, 1000],
+#               'max_depth':[1,2,3,4,5,6],
 #               'max_bins':[50,100,200,255]
-             }
+#             }
 
 
-#param_grid = {'oob_score': [True], 'bootstrap': [True],
-#              'max_features': ['sqrt', 0.05, 0.1, 0.2, 0.3, 0.4],
-#              'n_estimators': [250, 350, 500, 750, 1000]}
+param_grid = {'oob_score': [True], 'bootstrap': [True],
+              'max_features': ['sqrt', 0.05, 0.1, 0.2, 0.3, 0.4],
+              'n_estimators': [250, 350, 500, 750, 1000]}
 
 
 # Kfold parameter

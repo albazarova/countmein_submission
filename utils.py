@@ -281,7 +281,7 @@ def feature_engineering(all_patches_mixed_path):
     # preparing features for part 1 of dataset
     if all_patches_mixed_path.__contains__("Part1"):
         print('\nPreparing features for So2sat Part1')
-        feature_folder = os.path.join('/home/haicore-project-fzj/fzj_al.bazarova/countmein_submission/So2Sat_POP_features')
+        feature_folder = os.path.join('/p/home/jusers/bazarova1/juwels/hai_countmein/countmein_submission/So2Sat_POP_features')
         if not os.path.exists(feature_folder):
             os.mkdir(feature_folder)
         feature_folder_train = os.path.join(feature_folder, 'train')
@@ -496,7 +496,7 @@ def feature_engineering(all_patches_mixed_path):
                 dem_max_feat = []
 
                 city_name = os.path.split(each_city)[1]  # get the name of the city from the city path
-                feature_folder = os.path.join('/home/haicore-project-fzj/fzj_al.bazarova/countmein_submission/So2Sat_POP_features/')
+                feature_folder = os.path.join('/p/home/jusers/bazarova1/juwels/hai_countmein/countmein_submission/So2Sat_POP_features')
 
                 feature_folder_city = os.path.join(feature_folder, each_city.split(os.sep)[-2], city_name)
                 feature_csv_file = glob.glob(os.path.join(feature_folder_city, '*.csv'))[0]

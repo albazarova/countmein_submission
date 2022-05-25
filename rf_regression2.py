@@ -34,26 +34,26 @@ def rf_regressor(feature_folder):
 
     training_df.fillna(0, inplace=True)
 
-    #pca = PCA(n_components=50)
-    #pca.fit(training_df.iloc[:,4:])
+    pca = PCA(n_components=15)
+    pca.fit(training_df.iloc[:,4:])
     #print(pca.explained_variance_ratio_)
-    #training_df_pca=pca.fit_transform(training_df.iloc[:,4:])
+    training_df_pca=pca.fit_transform(training_df.iloc[:,4:])
    
 
     #training_df.to_csv('/p/home/jusers/bazarova1/juwels/hai_countmein/starter-pack/train_set_features.csv')
    # Get the dependent variables
     y = training_df[ground_truth_col_reg]
     # Get the independent variables
-    x = training_df[covariate_list]
-    #x = pd.DataFrame(training_df_pca)
+    #x = training_df[covariate_list]
+    x = pd.DataFrame(training_df_pca)
 
     print("Starting training...\n")
     # Initialize the model
-    #rfmodel = RandomForestRegressor(n_estimators=500, oob_score=True, max_features='auto', n_jobs=-1,
-    #        random_state=0)  # random_state is fixed to allow exact replication
+    rfmodel = RandomForestRegressor(n_estimators=500, oob_score=True, max_features='auto', n_jobs=-1,
+            random_state=0)  # random_state is fixed to allow exact replication
     #rfmodel = ExtraTreesRegressor(n_estimators=500, oob_score=True, max_features='auto', n_jobs=-1,
     #                                random_state=0,bootstrap=True)  # random_state is fixed to allow exact replication
-    rfmodel = GradientBoostingRegressor(n_estimators=500, learning_rate=0.1, max_depth=1, random_state=0)
+    #rfmodel = GradientBoostingRegressor(n_estimators=500, learning_rate=0.1, max_depth=1, random_state=0)
 #    rfmodel = AdaBoostRegressor(n_estimators=500, learning_rate=0.1, random_state=0)
     #rfmodel = AdaBoostRegressor(n_estimators=500, 
      #   learning_rate=0.1, max_depth=1, random_state=0)
@@ -61,14 +61,14 @@ def rf_regressor(feature_folder):
     fited = sel.fit(x, y)
     #print(sel.estimator_.feature_importances_)
     #fited=rfmodel.fit(x,y)
-    #feature_idx=[True for i in range(10)]
+    feature_idx=[True for i in range(15)]
     feature_idx = fited.get_support()  # Get list of T/F for covariates for which OOB score is upper the threshold
     list_covar = list(x.columns[feature_idx])  # Get list of covariates with the selected features
     x = fited.transform(x) # Update the dataframe with the selected features only
 
     # Instantiate the grid search model
     print("Starting Grid search with cross validation...\n")
-    grid_search = GridSearchCV(estimator=GradientBoostingRegressor(random_state=0), param_grid=param_grid, cv=kfold,
+    grid_search = GridSearchCV(estimator=RandomForestRegressor(random_state=0), param_grid=param_grid, cv=kfold,
                                n_jobs=n_jobs, verbose=0)
     grid_search.fit(x, y)  # Fit the grid search to the data
     regressor = grid_search.best_estimator_  # Save the best regressor
@@ -140,12 +140,12 @@ def rf_regressor(feature_folder):
         test_city_df = pd.read_csv(test_city_csv)
         test_df = test_df.append(test_city_df, ignore_index=True)  # append all test cities together
     #test_df.to_csv('/p/home/jusers/bazarova1/juwels/hai_countmein/starter-pack/test_set_features.csv')
-#    pca.fit(test_df.iloc[:,4:])
-    #test_df_pca=pca.fit_transform(test_df.iloc[:,4:])
-    #x_test=pd.DataFrame(test_df_pca)[list_covar]
+    pca.fit(test_df.iloc[:,4:])
+    test_df_pca=pca.fit_transform(test_df.iloc[:,4:])
+    x_test=pd.DataFrame(test_df_pca)[list_covar]
     
     # Get features
-    x_test = test_df[list_covar]
+    #x_test = test_df[list_covar]
 
     # load the trained model
     with open(rf_model_path, 'rb') as f:
