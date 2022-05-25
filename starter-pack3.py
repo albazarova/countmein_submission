@@ -43,7 +43,7 @@ if __name__ == "__main__":
     feature_folder = feature_engineering('/tmp/data/So2Sat_POP_Part2/')
 
     # Perform regression, ground truth is population count (POP)
-    prediction_csv = rf_regressor('/p/home/jusers/bazarova1/juwels/hai_countmein/countmein_submission/So2Sat_POP_features/')
+    prediction_csv = rf_regressor('/home/haicore-project-fzj/fzj_al.bazarova/countmein_submission/So2Sat_POP_features/')
 
     #validation_csv_path = prediction_csv.replace('prediction', 'validation')
     #validation_reg(prediction_csv, validation_csv_path, '/p/home/jusers/bazarova1/juwels/hai_countmein/countmein_submission/So2Sat_POP_features/test/')
